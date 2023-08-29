@@ -1,9 +1,10 @@
 import { projects, lists} from "./miscObjs";
 
-export const getLists = (dueDate, hasProject,project) => {
+export const getLists = (dueDate, hasProject, project) => {
     const belongsTo = []
     belongsTo.push(lists.lists[0]);
     if(hasProject === true) {
+        
         belongsTo.push(project)
     }
     if(dueDate < 10) {
@@ -15,9 +16,9 @@ export const getLists = (dueDate, hasProject,project) => {
     return belongsTo;
 }
 
-// const addToLists = (obj, lists) => {
-//     lists.forEach(element => {
-//         element.addItem(obj);
-//     });
-// }
+export const addTo = (obj, lists) => {
+    lists.forEach(element => {
+        element.addItem(obj);
+    });
+}
 

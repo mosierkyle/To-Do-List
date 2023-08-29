@@ -1,11 +1,12 @@
-import { getLists } from "./getLists";
+import { getLists, addTo } from "./getLists";
 
 export class toDoItem {
-    constructor(name, dueDate, priority) {
+    constructor(name, dueDate, priority, project, hasProject = false) {
         this.name = name;
         this.dueDate = dueDate;
         this.priority = priority;
-        this.hasProject = false;
+        this.hasProject = hasProject;
+        this.project = project;
     }
 
     getName() {
@@ -24,26 +25,11 @@ export class toDoItem {
     }
 
     getLists(){ 
-        return getLists(10, this.hasProject)
+        return getLists(10, this.hasProject, this.project)
+    }
+
+    addTo(){
+        return addTo(this, this.getLists())
     }
 
 }
-
-export class projectToDoItem extends toDoItem {
-    constructor(name, dueDate, priority, project) {
-        super(name, dueDate, priority);
-        this.hasProject = true;
-        this.project = project;
-    }
-
-    getProject() {
-        return this.project
-    }
-
-    getProjectLists(){ 
-        return getLists(10, this.hasProject)
-    }
-
-}
-
-
