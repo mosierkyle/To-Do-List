@@ -13,13 +13,11 @@ export class toDoList {
         console.log(index);
         this.toDos.splice(index, 1)
     }
-}
 
-export class projectToDoList extends toDoList {
     changeName(name){
         this.name = name;
     }
-
-
 }
+
+
 

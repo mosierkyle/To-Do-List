@@ -16,4 +16,20 @@ export const projects = (() => {
     return {projectList, addItem, deleteItem}
 })();
 
+export const lists = (() => {
+    const lists = [];
 
+    const addItem = (item) => {
+        lists.push(item)
+    }
+
+    return {lists, addItem}
+})();
+
+export const home = new toDoList('home');
+export const today = new toDoList('today') ;
+export const week = new toDoList('week');
+
+lists.addItem(home);
+lists.addItem(week);
+lists.addItem(today);

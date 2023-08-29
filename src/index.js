@@ -1,14 +1,14 @@
 import { toDoItem, projectToDoItem } from "./Modules/create-ToDo-item";
-import { toDoList } from "./Modules/create-ToDo-list";
-import { projects } from "./Modules/miscObjs";
+import { toDoList,  } from "./Modules/create-ToDo-list";
+import { projects, lists} from "./Modules/miscObjs";
+import { getLists } from "./Modules/getLists";
 
-const home = new toDoList('home');
-const today = new toDoList('today') ;
-const week = new toDoList('week');
+lists.lists[0].addItem('yo mamma');
 
+const project1 = new toDoList('school')
+projects.addItem(project1)
 
-const toDo1 = new projectToDoItem('take trash out', '08/28/23', 'high', 'school');
+const toDo1 = new projectToDoItem('take trash out', 7 , 'medium', project1);
 
-projects.addItem(toDo1)
-projects.deleteItem(toDo1)
-console.log(projects.projectList);
+console.log(toDo1.getProject());
+console.log(toDo1.getLists());
