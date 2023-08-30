@@ -1,3 +1,5 @@
+import { sortList } from "./getLists";
+
 export class toDoList {
     constructor(name) {
         this.name = name;
@@ -16,6 +18,10 @@ export class toDoList {
 
     changeName(name){
         this.name = name;
+    }
+    
+    sortList(){
+        sortList(this.toDos);
     }
 }
 

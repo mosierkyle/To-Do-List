@@ -22,3 +22,8 @@ export const addTo = (obj, lists) => {
     });
 }
 
+export const sortList = (list) => {
+    list.sort((a,b) =>
+        a.priority > b.priority ? 1 : -1
+    )   
+}
