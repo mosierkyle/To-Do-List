@@ -116,3 +116,14 @@
     border-radius: 10px;
     font-size: 1rem;
 }
+
+.details {
+    display: none;
+    position: absolute;
+    top: 25%;
+    left: 30%;
+    height: 100px;
+    width: 60vw;
+    background-color: white;
+    border: solid;
+}

@@ -1,7 +1,8 @@
 import "./main.css";
-import { toDoItem, projectToDoItem } from "./Modules/create-ToDo-item";
+import { toDoItem } from "./Modules/create-ToDo-item";
 import { toDoList } from "./Modules/create-ToDo-list";
 import { projects, lists} from "./Modules/miscObjs";
+import { createToDoItem } from "./Modules/dom-manipulation";
 
 const project1 = new toDoList('school')
 const project2 = new toDoList('gym')
@@ -20,3 +21,5 @@ toDo3.addTo()
 console.log(project1.toDos);
 console.log(lists.lists[1]);
 console.log(projects.projectList[0]);
+
+createToDoItem(toDo1);
