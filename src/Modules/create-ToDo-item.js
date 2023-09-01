@@ -25,7 +25,7 @@ export class toDoItem {
     }
 
     getLists(){ 
-        return getLists(10, this.hasProject, this.project)
+        return getLists(this.dueDate, this.hasProject, this.project)
     }
 
     addTo(){
