@@ -3,10 +3,6 @@ import { toDoList } from "./create-ToDo-list";
 import { sortList } from "./getLists";
 import { projects, lists} from "./miscObjs";
 
-const createElements = () => {
-    
-}
-
 export const generateToDoItem = (obj) => {
     const body = document.querySelector('#body')
     const toDos = document.querySelector('#to-dos');
@@ -78,7 +74,6 @@ export const generateToDoItem = (obj) => {
         details.style.display = 'grid'
 
     })
-    
 }
 
 export const generateToDoList = (list)=> {
@@ -106,11 +101,26 @@ export const loadingLists = ()=> {
         generateToDoList(lists.lists[0].toDos)
     })
     today.addEventListener('click', () => {
-        sortList(lists.lists[1].toDos)
-        generateToDoList(lists.lists[1].toDos)
-    })
-    week.addEventListener('click', () => {
         sortList(lists.lists[2].toDos)
         generateToDoList(lists.lists[2].toDos)
     })
+    week.addEventListener('click', () => {
+        sortList(lists.lists[1].toDos)
+        generateToDoList(lists.lists[1].toDos)
+    })
 }
+
+export const loadingProjects = (projects) => {
+    const projectList = document.querySelector('#project-list')
+    for(let i = 0; i < projects.projectList.length; i++) {
+        const newProject = document.createElement('p');
+        projectList.appendChild(newProject)
+        newProject.textContent = projects.projectList[i].name
+        newProject.setAttribute('class', 'project')
+        newProject.addEventListener('click', ()=> {
+            sortList(projects.projectList[i].toDos)
+            generateToDoList(projects.projectList[i].toDos)
+        })
+    }
+}
+
