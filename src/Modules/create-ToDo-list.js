@@ -12,7 +12,6 @@ export class toDoList {
 
     removeItem(item){
         let index = this.toDos.indexOf(item);
-        console.log(index);
         this.toDos.splice(index, 1)
     }
 

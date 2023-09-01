@@ -1,4 +1,4 @@
-import { getLists, addTo } from "./getLists";
+import { getLists, addTo, deleteFrom } from "./getLists";
 
 export class toDoItem {
     constructor(name, dueDate, priority, project, hasProject = false) {
@@ -30,6 +30,10 @@ export class toDoItem {
 
     addTo(){
         return addTo(this, this.getLists())
+    }
+
+    deleteFrom() {
+        return deleteFrom(this, this.getLists());
     }
 
 }

@@ -27,3 +27,9 @@ export const sortList = (list) => {
         a.priority > b.priority ? 1 : -1
     )   
 }
+
+export const deleteFrom = (obj, lists) => {
+    lists.forEach(element => {
+        element.removeItem(obj);
+    });
+}

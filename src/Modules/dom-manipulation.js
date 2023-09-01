@@ -1,6 +1,6 @@
 import { toDoItem } from "./create-ToDo-item";
 import { toDoList } from "./create-ToDo-list";
-import { sortList } from "./getLists";
+import { sortList, deleteFrom } from "./getLists";
 import { projects, lists} from "./miscObjs";
 
 export const generateToDoItem = (obj) => {
@@ -77,7 +77,7 @@ export const generateToDoItem = (obj) => {
     })
 
     toDoDelete.addEventListener('click', ()=> {
-        deleteToDoItem(id)
+        deleteToDoItem(id, obj)
     })
 }
 
@@ -129,8 +129,8 @@ export const loadingProjects = (projects) => {
     }
 }
 
-const deleteToDoItem = (id) => {
+const deleteToDoItem = (id, obj) => {
     const divToDelete = document.querySelector(`#${id}`)
     divToDelete.remove()
-    
+    obj.deleteFrom()
 }
