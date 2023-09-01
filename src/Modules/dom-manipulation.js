@@ -4,6 +4,7 @@ import { sortList } from "./getLists";
 import { projects, lists} from "./miscObjs";
 
 export const generateToDoItem = (obj) => {
+    const id = obj.name.replace(/\s/g, '')
     const body = document.querySelector('#body')
     const toDos = document.querySelector('#to-dos');
     let toDoDiv = document.createElement('div');
@@ -21,7 +22,7 @@ export const generateToDoItem = (obj) => {
     let detailsPriority = document.createElement('p')
     let closeButton = document.createElement('p')
 
-    toDoDiv.setAttribute('id', obj.name)
+    toDoDiv.setAttribute('id', id)
     toDoDiv.setAttribute('class', 'to-do-item');
     toDoCheckDiv.setAttribute('class', 'to-do-item-box-div');
     toDoCheck.setAttribute('class', 'to-do-item-box');
@@ -74,6 +75,10 @@ export const generateToDoItem = (obj) => {
         details.style.display = 'grid'
 
     })
+
+    toDoDelete.addEventListener('click', ()=> {
+        deleteToDoItem(id)
+    })
 }
 
 export const generateToDoList = (list)=> {
@@ -124,3 +129,8 @@ export const loadingProjects = (projects) => {
     }
 }
 
+const deleteToDoItem = (id) => {
+    const divToDelete = document.querySelector(`#${id}`)
+    divToDelete.remove()
+    
+}
