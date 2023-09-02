@@ -6,6 +6,10 @@ export class toDoList {
         this.toDos = []
     }
     
+    getName(){
+        return this.name
+    }
+
     addItem(item){
         this.toDos.push(item);
     }

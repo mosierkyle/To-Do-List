@@ -1,7 +1,7 @@
 import { toDoItem } from "./create-ToDo-item";
 import { toDoList } from "./create-ToDo-list";
 import { sortList, deleteFrom } from "./getLists";
-import { projects, lists} from "./miscObjs";
+import { projects, lists, home, today, week } from "./miscObjs";
 
 export const generateToDoItem = (obj) => {
     const id = obj.name.replace(/\s/g, '')
@@ -83,6 +83,8 @@ export const generateToDoItem = (obj) => {
 
 export const generateToDoList = (list)=> {
     removeToDoList()
+    addHeading(list)
+    console.log(list);
     for(let i = 0; i < list.length; i++) {
         generateToDoItem(list[i])
     }
@@ -150,6 +152,27 @@ const addNewButton = () => {
     newButtonDiv.appendChild(newButton)
 
     newButton.addEventListener('click', ()=> {
-        
+
     })
+}
+
+const addHeading = (list)=> {
+    const toDos = document.querySelector('#to-dos')
+    const newHeadingDiv = document.createElement('div')
+    const newHeading = document.createElement('h2')
+    for(let i = 0; i < lists.lists.length; i++) {
+        if(list == lists.lists[i].toDos){
+            newHeading.textContent = lists.lists[i].getName()
+        }
+    }
+    for(let i = 0; i < projects.projectList.length; i++) {
+        if(list == projects.projectList[i].toDos){
+            newHeading.textContent = projects.projectList[i].getName()
+        }
+    }
+    newHeading.setAttribute('class', 'new-heading')
+    newHeadingDiv.setAttribute('class', 'new-heading-div' )
+    toDos.appendChild(newHeadingDiv);
+    newHeadingDiv.appendChild(newHeading)
+
 }

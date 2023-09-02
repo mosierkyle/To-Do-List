@@ -18,7 +18,6 @@ export const projects = (() => {
 
 export const lists = (() => {
     const lists = [];
-
     const addItem = (item) => {
         lists.push(item)
     }
