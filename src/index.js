@@ -1,10 +1,11 @@
 import "./main.css";
 import { toDoItem } from "./Modules/create-ToDo-item";
 import { toDoList } from "./Modules/create-ToDo-list";
-import { projects, lists, home, week, today } from "./Modules/miscObjs";
+import { projects, lists, createMainLists} from "./Modules/miscObjs";
 import { generateToDoList, loadingLists, loadingProjects,  } from "./Modules/dom-manipulation";
 import { sortList } from "./Modules/getLists";
 
+createMainLists()
 const project1 = new toDoList('school')
 const project2 = new toDoList('gym')
 

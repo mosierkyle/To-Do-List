@@ -25,10 +25,12 @@ export const lists = (() => {
     return {lists, addItem}
 })();
 
-export const home = new toDoList('home');
-export const today = new toDoList('today') ;
-export const week = new toDoList('week');
+export const createMainLists = () => {
+    const home = new toDoList('home');
+    const today = new toDoList('today') ;
+    const week = new toDoList('week');
+    lists.addItem(home);
+    lists.addItem(week);
+    lists.addItem(today);
+}
 
-lists.addItem(home);
-lists.addItem(week);
-lists.addItem(today);

@@ -4,7 +4,6 @@ export const getLists = (dueDate, hasProject, project) => {
     const belongsTo = []
     belongsTo.push(lists.lists[0]);
     if(hasProject === true) {
-        
         belongsTo.push(project)
     }
     if(dueDate < 10) {
