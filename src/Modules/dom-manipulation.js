@@ -1,6 +1,8 @@
 import { sortList } from "./getLists";
 import { projects, lists } from "./miscObjs";
 
+let currentList;
+
 export const generateToDoItem = (obj) => {
     const id = obj.name.replace(/\s/g, '')
     const body = document.querySelector('#body')
@@ -8,11 +10,11 @@ export const generateToDoItem = (obj) => {
     let toDoDiv = document.createElement('div');
     let toDoCheckDiv = document.createElement('div');
     let toDoCheck = document.createElement('button');
+    let toDoTitleDiv = document.createElement('div')
     let toDoTitle = document.createElement('p');
     let toDoDateDiv = document.createElement('div');
     let toDoDate = document.createElement('p');
     let toDoDetails = document.createElement('button');
-    let toDoEdit = document.createElement('button');
     let toDoDelete = document.createElement('button');
     let details = document.createElement('div');
     let detailsTitle = document.createElement('p')
@@ -25,11 +27,11 @@ export const generateToDoItem = (obj) => {
     toDoCheckDiv.setAttribute('class', 'to-do-item-box-div');
     toDoCheck.setAttribute('class', 'to-do-item-box');
     toDoTitle.setAttribute('class', 'to-do-item-title');
+    toDoTitleDiv.setAttribute('class', 'to-do-item-title-div')
     toDoDateDiv.setAttribute('class', 'to-do-item-date-div');
     toDoDate.setAttribute('class', 'to-do-item-date');
     toDoDetails.setAttribute('class', 'to-do-item-details');
-    toDoEdit.setAttribute('class', 'to-do-item-edit');
-    toDoDelete.setAttribute('class', 'to-do-item-edit');
+    toDoDelete.setAttribute('class', 'to-do-item-delete');
     details.setAttribute('class', 'details')
     detailsTitle.setAttribute('class','details-title')
     detailsDueDate.setAttribute('class','details-due-date')
@@ -39,7 +41,6 @@ export const generateToDoItem = (obj) => {
     toDoTitle.textContent = obj.name;
     toDoDate.textContent = obj.dueDate;
     toDoDetails.textContent = 'Details'
-    toDoEdit.textContent = 'Edit'
     toDoDelete.textContent = 'Delete'
     detailsTitle.textContent = `Name: ${obj.name}`;
     detailsDueDate.textContent = `Due Date: ${obj.dueDate}`;
@@ -49,11 +50,11 @@ export const generateToDoItem = (obj) => {
     toDos.appendChild(toDoDiv);
     toDoDiv.appendChild(toDoCheckDiv);
     toDoCheckDiv.appendChild(toDoCheck);
-    toDoDiv.appendChild(toDoTitle);
+    toDoDiv.appendChild(toDoTitleDiv);
+    toDoTitleDiv.appendChild(toDoTitle);
     toDoDiv.appendChild(toDoDateDiv);
     toDoDateDiv.appendChild(toDoDate);
     toDoDiv.appendChild(toDoDetails);
-    toDoDiv.appendChild(toDoEdit);
     toDoDiv.appendChild(toDoDelete);
     body.appendChild(details)
     details.appendChild(detailsTitle)
@@ -69,13 +70,16 @@ export const generateToDoItem = (obj) => {
         details.style.display = 'none';
     })
 
-    toDoEdit.addEventListener('click', ()=> {
-        details.style.display = 'grid'
-
-    })
-
     toDoDelete.addEventListener('click', ()=> {
         deleteToDoItem(id, obj)
+    })
+
+    toDoTitle.addEventListener('click',()=> {
+        editToDoTitle(toDoTitleDiv, toDoTitle, obj)
+    })
+
+    toDoDate.addEventListener('click',()=> {
+        editToDoDate(toDoDateDiv, toDoDate, obj)
     })
 }
 
@@ -86,6 +90,7 @@ export const generateToDoList = (list)=> {
         generateToDoItem(list[i])
     }
     addNewButton()
+    currentList = list;
 }
 
 const removeToDoList = ()=> {
@@ -139,12 +144,13 @@ const addNewButton = () => {
     const toDos = document.querySelector('#to-dos')
     const newButtonDiv = document.createElement('div')
     const newButton = document.createElement('button')
-    newButton.textContent = '+'
+    newButton.textContent = 'Add Task'
     newButton.setAttribute('class', 'new-button')
     newButtonDiv.setAttribute('class', 'new-button-div')
     toDos.appendChild(newButtonDiv)
     newButtonDiv.appendChild(newButton)
     newButton.addEventListener('click', ()=> {
+        newToDoItem()
     })
 }
 
@@ -170,4 +176,73 @@ const addHeading = (list)=> {
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export const newToDoItem = () => {
+    const toDos = document.querySelector('#to-dos');
+    toDos.removeChild(toDos.lastChild)
+    let toDoDiv = document.createElement('div');
+    let toDoCheckDiv = document.createElement('div');
+    let toDoCheck = document.createElement('button');
+
+    toDoDiv.setAttribute('class', 'to-do-item');
+    toDoCheckDiv.setAttribute('class', 'to-do-item-box-div');
+    toDoCheck.setAttribute('class', 'to-do-item-box');
+
+    toDos.appendChild(toDoDiv);
+    toDoDiv.appendChild(toDoCheckDiv);
+    toDoCheckDiv.appendChild(toDoCheck);
+    addNewButton()
+}
+
+const editToDoTitle = (div, title, obj)=> {
+    div.removeChild(title)
+    const titleInput = document.createElement('input')
+    titleInput.setAttribute('class', 'title-input')
+    titleInput.setAttribute('type', 'text')
+    titleInput.setAttribute('placeholder', title.textContent)
+    div.appendChild(titleInput);
+    let newTitle;
+    titleInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            const newTitle = document.createElement('p');
+            newTitle.setAttribute('class', 'to-do-item-title');
+            newTitle.textContent = titleInput.value
+            obj.changeName(titleInput.value)
+            div.removeChild(titleInput)
+            div.appendChild(newTitle)
+            newTitle.addEventListener('click', ()=> {
+                editToDoTitle(div, newTitle, obj)
+            })
+            updateCurrentpage()
+        }
+    })
+}
+
+const editToDoDate = (div, dueDate, obj) => {
+    div.removeChild(dueDate)
+    const dateInput = document.createElement('input')
+    dateInput.setAttribute('class', 'date-input')
+    dateInput.setAttribute('type', 'date')
+    div.appendChild(dateInput);
+    let newDate;
+    dateInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            const newDate = document.createElement('p');
+            newDate.setAttribute('class', 'to-do-item-date');
+            newDate.textContent = dateInput.value
+            obj.changeDueDate(dateInput.value)
+            div.removeChild(dateInput)
+            div.appendChild(newDate)
+            newDate.addEventListener('click', ()=> {
+                editToDoDate(div, newDate, obj)
+            })
+            updateCurrentpage()
+        }
+    })
+}
+
+const updateCurrentpage = (list = currentList) => {
+    sortList(list)
+    generateToDoList(list)
 }
