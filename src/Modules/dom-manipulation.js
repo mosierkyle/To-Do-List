@@ -1,11 +1,11 @@
 import { sortList } from "./getLists";
 import { projects, lists } from "./miscObjs";
+import { toDoItem } from "./create-ToDo-item";
 
 let currentList;
 
 export const generateToDoItem = (obj) => {
     const id = obj.name.replace(/\s/g, '')
-    const body = document.querySelector('#body')
     const toDos = document.querySelector('#to-dos');
     let toDoDiv = document.createElement('div');
     let toDoCheckDiv = document.createElement('div');
@@ -184,15 +184,48 @@ export const newToDoItem = () => {
     let toDoDiv = document.createElement('div');
     let toDoCheckDiv = document.createElement('div');
     let toDoCheck = document.createElement('button');
+    const titleInput = document.createElement('input')
+    const dateInput = document.createElement('input')
+    const priorityInput = document.createElement('select')
+    const priority = document.createElement('option')
+    const priorityHigh = document.createElement('option')
+    const priorityMedium = document.createElement('option')
+    const priorityLow = document.createElement('option')
+    const doneBtn = document.createElement('button')
 
-    toDoDiv.setAttribute('class', 'to-do-item');
+    toDoDiv.setAttribute('class', 'new-to-do-item');
     toDoCheckDiv.setAttribute('class', 'to-do-item-box-div');
     toDoCheck.setAttribute('class', 'to-do-item-box');
+    titleInput.setAttribute('class', 'title-input')
+    titleInput.setAttribute('type', 'text')
+    dateInput.setAttribute('class', 'date-input')
+    dateInput.setAttribute('type', 'date')
+    priorityInput.setAttribute('class', 'priority-input')
+    doneBtn.setAttribute('class', 'done-button')
+
+    priority.textContent = 'Priority'
+    priorityHigh.textContent = 'High'
+    priorityMedium.textContent = 'Medium'
+    priorityLow.textContent = 'Low'
+    doneBtn.textContent = 'Done'
 
     toDos.appendChild(toDoDiv);
     toDoDiv.appendChild(toDoCheckDiv);
     toDoCheckDiv.appendChild(toDoCheck);
     addNewButton()
+    toDoDiv.appendChild(titleInput)
+    toDoDiv.appendChild(dateInput)
+    toDoDiv.appendChild(priorityInput)
+    priorityInput.appendChild(priority)
+    priorityInput.appendChild(priorityLow)
+    priorityInput.appendChild(priorityMedium)
+    priorityInput.appendChild(priorityHigh)
+    toDoDiv.appendChild(doneBtn)
+
+    doneBtn.addEventListener('click', ()=> {
+        newItem(titleInput.value, dateInput.value, priorityInput.value)
+    })
+
 }
 
 const editToDoTitle = (div, title, obj)=> {
@@ -205,6 +238,10 @@ const editToDoTitle = (div, title, obj)=> {
     let newTitle;
     titleInput.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
+            if(titleInput.value == '') {
+                console.log(titleInput);
+                div.appendChild(title)
+            }
             const newTitle = document.createElement('p');
             newTitle.setAttribute('class', 'to-do-item-title');
             newTitle.textContent = titleInput.value
@@ -245,4 +282,18 @@ const editToDoDate = (div, dueDate, obj) => {
 const updateCurrentpage = (list = currentList) => {
     sortList(list)
     generateToDoList(list)
+}
+
+const newItem = (title,date,priority,project = 'none', hasProject = false)=> {
+    let priorityNum = 0;
+    if(priority == 'High') {
+        priorityNum = 3;
+    } else if(priority == 'Medium') {
+        priorityNum = 2;
+    } else if(priority == 'Low') {
+        priorityNum = 1;
+    }
+    const toDoNew = new toDoItem(title,date,priorityNum,project,hasProject)
+    toDoNew.addTo()
+    updateCurrentpage()
 }

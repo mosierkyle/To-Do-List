@@ -9,7 +9,7 @@
     width: 100vw;
     height: 100vh;
     display: grid;
-    grid-template: 1fr 5fr / 2fr 5fr;
+    grid-template: 1fr 5fr / minmax(2fr, 300px) 5fr;
 }
 
 #header {
@@ -19,6 +19,7 @@
     justify-content: start;
     align-items: center;
     padding: 2rem;
+    min-height: 10vh;
 }
 
 #sidebar {
@@ -28,6 +29,7 @@
     grid-template-rows: 1fr 2fr;
     padding: 1rem;
     grid-row-gap: 2rem;
+    max-width: 300px;
 }
 
 #lists {
@@ -76,10 +78,12 @@
     text-decoration: underline;
 }
 
+
 #content {
     border: solid;
     grid: 2 / 2 / 3 / 3;
 }
+
 
 #to-dos {
     width: 100%;
@@ -91,13 +95,26 @@
     row-gap: 1rem;
 }
 
+.new-to-do-item {
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 10px;
+    width: 100%;
+    height: 50px;
+    display: grid;
+    grid-template: 1fr / .5fr 6fr 127px 95px 1fr;
+    align-items: center;
+    column-gap: .5rem;
+    justify-content: center;
+    padding: 0 1rem;
+}
+
 .to-do-item {
     background-color: rgba(0,0,0,0.1);
     border-radius: 10px;
     width: 100%;
     height: 50px;
     display: grid;
-    grid-template: 1fr / .5fr 6fr 100px 1fr 1fr;
+    grid-template: 1fr / .5fr 6fr 127px 1fr 1fr;
     align-items: center;
     column-gap: .5rem;
     justify-content: center;
@@ -162,6 +179,42 @@
     font-size: 1rem;
 }
 
+.done-button {
+    color: black;
+    background-color: white;
+    border: none;
+    padding: .40rem;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.priority-input {
+    color: black;
+    background-color: white;
+    border: none;
+    padding: .40rem;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.date-input {
+    color: black;
+    background-color: white;
+    border: none;
+    padding: .40rem;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.title-input {
+    color: black;
+    background-color: white;
+    border: none;
+    padding: .40rem;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
 .details {
     display: none;
     grid-template-columns: repeat(4,1fr);
@@ -172,8 +225,6 @@
     width: 60vw;
     background-color: white;
     border: 1px solid rgba(0,0,0,0.5);
-    /* align-items: center;
-    justify-content: center; */
     border-radius: 10px;
     padding: 1rem;
 }
@@ -234,3 +285,4 @@
     justify-content: center;
     align-items: center;
 }
+
