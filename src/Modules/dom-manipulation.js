@@ -86,6 +86,7 @@ export const generateToDoList = (list)=> {
     for(let i = 0; i < list.length; i++) {
         generateToDoItem(list[i])
     }
+    addNewButton()
 }
 
 const removeToDoList = ()=> {
@@ -133,4 +134,22 @@ const deleteToDoItem = (id, obj) => {
     const divToDelete = document.querySelector(`#${id}`)
     divToDelete.remove()
     obj.deleteFrom()
+}
+
+const addNewButton = () => {
+    const toDos = document.querySelector('#to-dos')
+    const newButtonDiv = document.createElement('div')
+    const newButton = document.createElement('button')
+
+    newButton.textContent = '+'
+    
+    newButton.setAttribute('class', 'new-button')
+    newButtonDiv.setAttribute('class', 'new-button-div')
+
+    toDos.appendChild(newButtonDiv)
+    newButtonDiv.appendChild(newButton)
+
+    newButton.addEventListener('click', ()=> {
+        
+    })
 }

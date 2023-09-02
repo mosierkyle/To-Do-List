@@ -23,5 +23,6 @@ toDo3.addTo()
 
 sortList(lists.lists[0].toDos)
 generateToDoList(lists.lists[0].toDos);
+
 loadingLists()
 loadingProjects(projects)

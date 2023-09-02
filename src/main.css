@@ -15,6 +15,10 @@
 #header {
     border: solid;
     grid-area: 1 / 1 / 2 / 3;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 2rem;
 }
 
 #sidebar {
@@ -215,4 +219,21 @@
     font-size: 1.1rem;
     border-radius: 10px;
     background-color: rgba(0,0,0,0.1);
+}
+
+.new-button-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-button {
+    background-color: rgba(0,0,0,0.1);
+    border: none;
+    font-size: 1.5rem;
+    padding: .25rem .75rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
