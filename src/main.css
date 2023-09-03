@@ -35,7 +35,7 @@
     display: grid;
     grid-template-rows: 2fr 1fr 1fr 1fr;
     grid-row-gap: 10px;
-    min-width: 175px
+    min-width: 200px;
 }
 
 #projects {
@@ -62,12 +62,12 @@
     display: grid;
     grid-template-rows: repeat(auto-fit, 22.5px);
     grid-row-gap: max(10px, 8%);
-    padding-left: 1rem;
 }
 
 .project {
     font-size: 1.2rem;
     font-weight: 500;
+    padding-left: 1rem;
 }
 
 .project:hover {
@@ -78,6 +78,29 @@
     text-decoration: underline;
 }
 
+.new-project-button-div {
+    padding-left: 1rem;
+}
+
+.new-project-button {
+    background-color: rgba(0,0,0,0.1);
+    border: none;
+    padding: .25rem .75rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+.project-input {
+    background-color: rgba(0,0,0,0.1);
+    border: none;
+    padding: .40rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: black;
+}
 
 #content {
     border: solid;

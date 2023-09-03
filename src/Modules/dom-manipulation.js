@@ -1,6 +1,7 @@
 import { sortList } from "./getLists";
 import { projects, lists } from "./miscObjs";
 import { toDoItem } from "./create-ToDo-item";
+import { toDoList } from "./create-ToDo-list";
 
 let currentList;
 
@@ -122,6 +123,9 @@ export const loadingLists = ()=> {
 
 export const loadingProjects = (projects) => {
     const projectList = document.querySelector('#project-list')
+    while(projectList.firstChild) {
+        projectList.removeChild(projectList.firstChild);
+    }
     for(let i = 0; i < projects.projectList.length; i++) {
         const newProject = document.createElement('p');
         projectList.appendChild(newProject)
@@ -132,6 +136,7 @@ export const loadingProjects = (projects) => {
             generateToDoList(projects.projectList[i].toDos)
         })
     }
+    addNewProjectButton()
 }
 
 const deleteToDoItem = (id, obj) => {
@@ -317,5 +322,40 @@ const newItem = (title,date,priority,project = 'none', hasProject = false)=> {
     const toDoNew = new toDoItem(title,date,priorityNum,realProject,realHasProject)
     toDoNew.addTo()
     updateCurrentpage()
+}
+
+const addNewProjectButton = () => {
+    const projectList = document.querySelector('#project-list')
+    const newButtonDiv = document.createElement('div')
+    const newButton = document.createElement('button')
+    newButton.textContent = 'Add Project'
+    newButton.setAttribute('class', 'new-project-button')
+    newButtonDiv.setAttribute('class', 'new-project-button-div')
+    projectList.appendChild(newButtonDiv)
+    newButtonDiv.appendChild(newButton)
+    newButton.addEventListener('click', ()=> {
+        createNewProject()
+    })
+}
+
+const createNewProject = () => {
+    const projectList = document.querySelector('#project-list');
+    projectList.removeChild(projectList.lastChild)
+    const projectName = document.createElement('input');
+    projectName.setAttribute('type', 'text');
+    projectName.setAttribute('class', 'project-input');
+    projectList.appendChild(projectName)
+
+    projectName.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            if((projectName.value == '')){
+                return
+            }
+            const newProject = new toDoList(projectName.value);
+            console.log(newProject);
+            projects.addItem(newProject);
+            loadingProjects(projects)
+        }
+    })
 }
 
