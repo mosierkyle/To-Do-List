@@ -98,8 +98,11 @@
     border: none;
     padding: .40rem;
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: black;
+    width:120px;
+    height: 1.75rem;
+    margin-left: .8rem;
 }
 
 #content {
@@ -131,6 +134,7 @@
     column-gap: .5rem;
     justify-content: center;
     padding: 0 1rem;
+    border-left: 10px solid rgba(0,0,0,0.5);
 }
 
 .to-do-item {
@@ -255,19 +259,30 @@
     font-size: 1rem;
 }
 
+#blur {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    background-color: rgba(0,0,0,0.5);
+}
+
 .details {
     display: none;
-    grid-template-columns: repeat(4,1fr);
+    row-gap: 1rem;
     position: absolute;
-    top: 25%;
-    left: 30%;
-    height: 100px;
-    width: 60vw;
+    top: 15%;
+    left: 15%;
+    height: 30vh;
+    width: 75vw;
     background-color: white;
     border: 1px solid rgba(0,0,0,0.5);
     border-radius: 10px;
-    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
 }
+
 
 .details-title {
     display: flex;
@@ -301,6 +316,7 @@
     font-size: 1.1rem;
     border-radius: 10px;
     background-color: rgba(0,0,0,0.1);
+    width: 100%;
 }
 
 .new-button-div {

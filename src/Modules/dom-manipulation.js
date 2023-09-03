@@ -18,10 +18,11 @@ export const generateToDoItem = (obj) => {
     let toDoDetails = document.createElement('button');
     let toDoDelete = document.createElement('button');
     let details = document.createElement('div');
-    let detailsTitle = document.createElement('p')
-    let detailsDueDate = document.createElement('p')
-    let detailsPriority = document.createElement('p')
-    let closeButton = document.createElement('p')
+    let detailsTitle = document.createElement('div')
+    let detailsDueDate = document.createElement('div')
+    let detailsPriority = document.createElement('dic')
+    let closeButton = document.createElement('div')
+    const blur = document.querySelector('#blur');
 
     toDoDiv.setAttribute('id', id)
     toDoDiv.setAttribute('class', 'to-do-item');
@@ -45,7 +46,7 @@ export const generateToDoItem = (obj) => {
     toDoDelete.textContent = 'Delete'
     detailsTitle.textContent = `Name: ${obj.name}`;
     detailsDueDate.textContent = `Due Date: ${obj.dueDate}`;
-    detailsPriority.textContent = `Priority: ${obj.priority}`;
+    detailsPriority.textContent = `Priority: ${showPriority(obj.priority)}`;
     closeButton.textContent = `X`
 
     toDos.appendChild(toDoDiv);
@@ -71,10 +72,12 @@ export const generateToDoItem = (obj) => {
 
     toDoDetails.addEventListener('click', ()=> {
         details.style.display = 'grid';
+        blur.style.display = 'flex'
     })
     
     closeButton.addEventListener('click', ()=> {
         details.style.display = 'none';
+        blur.style.display = 'none'
     })
 
     toDoDelete.addEventListener('click', ()=> {
@@ -384,4 +387,14 @@ const completed = (title, checkbox) => {
     }
     title.classList.add('checked');
     checkbox.classList.add('clicked');
+}
+
+const showPriority = (priority)=> {
+    if(priority == '3') {
+        return 'High'
+    } else if(priority == '2'){
+        return 'Medium' 
+    } else if(priority == '1') {
+        return 'Low'
+    }
 }

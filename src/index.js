@@ -6,6 +6,7 @@ import { generateToDoList, loadingLists, loadingProjects, newToDoItem,  } from "
 import { sortList } from "./Modules/getLists";
 
 createMainLists()
+
 const project1 = new toDoList('school')
 const project2 = new toDoList('gym')
 
