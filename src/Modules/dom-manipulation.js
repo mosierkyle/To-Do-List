@@ -212,7 +212,6 @@ export const newToDoItem = () => {
     toDos.appendChild(toDoDiv);
     toDoDiv.appendChild(toDoCheckDiv);
     toDoCheckDiv.appendChild(toDoCheck);
-    addNewButton()
     toDoDiv.appendChild(titleInput)
     toDoDiv.appendChild(dateInput)
     toDoDiv.appendChild(priorityInput)
@@ -222,7 +221,11 @@ export const newToDoItem = () => {
     priorityInput.appendChild(priorityHigh)
     toDoDiv.appendChild(doneBtn)
 
+
     doneBtn.addEventListener('click', ()=> {
+        if((titleInput.value == '') || (dateInput.value == '') || (priorityInput.value == 'Priority')){
+            return
+        }
         newItem(titleInput.value, dateInput.value, priorityInput.value)
     })
 
@@ -239,19 +242,27 @@ const editToDoTitle = (div, title, obj)=> {
     titleInput.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
             if(titleInput.value == '') {
-                console.log(titleInput);
-                div.appendChild(title)
+                const newTitle = document.createElement('p');
+                newTitle.setAttribute('class', 'to-do-item-title');
+                newTitle.textContent = title.value;
+                div.removeChild(titleInput);
+                div.appendChild(newTitle);
+                newTitle.addEventListener('click', ()=> {
+                    editToDoTitle(div, newTitle, obj);
+                })
+                updateCurrentpage();
+            } else if(titleInput.value != '') {
+                const newTitle = document.createElement('p');
+                newTitle.setAttribute('class', 'to-do-item-title');
+                newTitle.textContent = titleInput.value
+                obj.changeName(titleInput.value)
+                div.removeChild(titleInput)
+                div.appendChild(newTitle)
+                newTitle.addEventListener('click', ()=> {
+                    editToDoTitle(div, newTitle, obj)
+                })
+                updateCurrentpage()
             }
-            const newTitle = document.createElement('p');
-            newTitle.setAttribute('class', 'to-do-item-title');
-            newTitle.textContent = titleInput.value
-            obj.changeName(titleInput.value)
-            div.removeChild(titleInput)
-            div.appendChild(newTitle)
-            newTitle.addEventListener('click', ()=> {
-                editToDoTitle(div, newTitle, obj)
-            })
-            updateCurrentpage()
         }
     })
 }
@@ -275,6 +286,7 @@ const editToDoDate = (div, dueDate, obj) => {
                 editToDoDate(div, newDate, obj)
             })
             updateCurrentpage()
+            
         }
     })
 }
@@ -285,7 +297,16 @@ const updateCurrentpage = (list = currentList) => {
 }
 
 const newItem = (title,date,priority,project = 'none', hasProject = false)=> {
+    const yep = (document.querySelector('.new-heading').textContent).toLowerCase()
     let priorityNum = 0;
+    let realProject = project;
+    let realHasProject = hasProject;
+    for(let i = 0; i < projects.projectList.length; i++){
+        if(projects.projectList[i].name == yep){
+            realProject = projects.projectList[i];
+            realHasProject = true;
+        };
+    }
     if(priority == 'High') {
         priorityNum = 3;
     } else if(priority == 'Medium') {
@@ -293,7 +314,8 @@ const newItem = (title,date,priority,project = 'none', hasProject = false)=> {
     } else if(priority == 'Low') {
         priorityNum = 1;
     }
-    const toDoNew = new toDoItem(title,date,priorityNum,project,hasProject)
+    const toDoNew = new toDoItem(title,date,priorityNum,realProject,realHasProject)
     toDoNew.addTo()
     updateCurrentpage()
 }
+
