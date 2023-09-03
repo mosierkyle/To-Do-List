@@ -33,4 +33,3 @@ export const createMainLists = () => {
     lists.addItem(week);
     lists.addItem(today);
 }
-

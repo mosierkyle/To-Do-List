@@ -63,6 +63,8 @@ export const generateToDoItem = (obj) => {
     details.appendChild(detailsPriority)
     details.appendChild(closeButton)
     
+    setPriority(obj.priority, toDoDiv)
+
     toDoDetails.addEventListener('click', ()=> {
         details.style.display = 'grid';
     })
@@ -226,7 +228,6 @@ export const newToDoItem = () => {
     priorityInput.appendChild(priorityHigh)
     toDoDiv.appendChild(doneBtn)
 
-
     doneBtn.addEventListener('click', ()=> {
         if((titleInput.value == '') || (dateInput.value == '') || (priorityInput.value == 'Priority')){
             return
@@ -359,3 +360,12 @@ const createNewProject = () => {
     })
 }
 
+const setPriority = (priority, element)=> {
+    if(priority == '3') {
+        element.classList.add('high')
+    } else if(priority == '2'){
+        element.classList.add('medium')
+    } else if(priority == '1') {
+        element.classList.add('low')
+    }
+}
