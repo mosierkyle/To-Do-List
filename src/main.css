@@ -173,7 +173,7 @@
     cursor: pointer;
 }
 
-.to-do-item-box-clicked {
+.clicked {
     background-color: rgba(0,0,0,0.5);
     border: 2px white solid;
 }
@@ -189,6 +189,10 @@
     color: black;
     font-weight: 500;
     overflow: hidden;
+}
+
+.checked {
+    text-decoration: line-through;
 }
 
 .to-do-item-details {

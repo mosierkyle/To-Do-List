@@ -65,6 +65,10 @@ export const generateToDoItem = (obj) => {
     
     setPriority(obj.priority, toDoDiv)
 
+    toDoCheck.addEventListener('click', ()=> {
+        completed(toDoTitle,toDoCheck)
+    })
+
     toDoDetails.addEventListener('click', ()=> {
         details.style.display = 'grid';
     })
@@ -368,4 +372,16 @@ const setPriority = (priority, element)=> {
     } else if(priority == '1') {
         element.classList.add('low')
     }
+}
+
+const completed = (title, checkbox) => {
+    for(let i = 0; i < title.classList.length; i++) {
+        if (title.classList[i] == 'checked') {
+            title.classList.remove('checked');
+            checkbox.classList.remove('clicked');
+            return
+        }
+    }
+    title.classList.add('checked');
+    checkbox.classList.add('clicked');
 }
