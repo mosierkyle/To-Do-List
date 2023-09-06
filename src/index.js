@@ -13,9 +13,9 @@ const project2 = new toDoList('gym')
 projects.addItem(project1)
 projects.addItem(project2)
 
-const toDo1 = new toDoItem('take trash out', '2023-7-7', 1, 'none', false);
-const toDo2 = new toDoItem('email prof', '2023-9-02', 3, project1, true);
-const toDo3 = new toDoItem('pay dues', '2023-9-06' , 2, project1, true);
+const toDo1 = new toDoItem('take trash out', '2023-07-07', 1, 'none', false);
+const toDo2 = new toDoItem('email prof', '2023-09-02', 3, project1, true);
+const toDo3 = new toDoItem('pay dues', '2023-09-06' , 2, project1, true);
 
 toDo1.addTo()
 toDo2.addTo()
@@ -27,3 +27,11 @@ generateToDoList(lists.lists[0].toDos);
 loadingLists()
 loadingProjects(projects)
 
+function isDateToday(dateToCheck) {
+    const today = new Date();
+    const isSameDate =
+        dateToCheck.getDate() === today.getDate() &&
+        dateToCheck.getMonth() === today.getMonth() &&
+        dateToCheck.getFullYear() === today.getFullYear();
+    return isSameDate
+  }

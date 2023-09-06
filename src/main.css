@@ -14,21 +14,23 @@
 }
 
 #header {
-    border: solid;
     grid-area: 1 / 1 / 2 / 3;
     display: flex;
     justify-content: start;
     align-items: center;
     padding: 2rem;
+    background-color: rgba(0,0,0,0.05);;
+    color:  black;
 }
 
 #sidebar {
-    border: solid;
     grid-area: 2 / 1 / 3 / 2;
     display: grid;
     grid-template-rows: 1fr 2fr;
     padding: 1rem;
     grid-row-gap: 2rem;
+    background-color: rgb(206,255,158);
+    color: black;
 }
 
 #lists {
@@ -83,7 +85,7 @@
 }
 
 .new-project-button {
-    background-color: rgba(0,0,0,0.1);
+    background-color: white;
     border: none;
     padding: .25rem .75rem;
     border-radius: 10px;
@@ -93,8 +95,12 @@
     font-size: 1.1rem;
 }
 
+.new-project-button:hover {
+    cursor: pointer;
+}
+
 .project-input {
-    background-color: rgba(0,0,0,0.1);
+    background-color: white;
     border: none;
     padding: .40rem;
     border-radius: 10px;
@@ -106,7 +112,6 @@
 }
 
 #content {
-    border: solid;
     grid: 2 / 2 / 3 / 3;
 }
 
@@ -123,7 +128,7 @@
 }
 
 .new-to-do-item {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgb(206,255,158);
     border-radius: 10px;
     width: 65vw;
     min-width: 530px;
@@ -138,7 +143,7 @@
 }
 
 .to-do-item {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgb(206,255,158);
     border-radius: 10px;
     width: 65vw;
     min-width: 530px;
@@ -150,7 +155,6 @@
     justify-content: center;
     padding: 0 1rem;
     overflow: hidden;
-    
 }
 
 .high {
@@ -208,6 +212,10 @@
     font-size: 1rem;
 }
 
+.to-do-item-details:hover {
+    cursor: pointer;
+}
+
 .to-do-item-date-div {
     display: flex;
     justify-content: end;
@@ -223,6 +231,10 @@
     font-size: 1rem;
 }
 
+.to-do-item-delete:hover {
+    cursor: pointer;
+}
+
 .done-button {
     color: black;
     background-color: white;
@@ -230,6 +242,10 @@
     padding: .40rem;
     border-radius: 10px;
     font-size: 1rem;
+}
+
+.done-button:hover {
+    cursor: pointer;
 }
 
 .priority-input {
@@ -315,7 +331,7 @@
     font-weight: 500;
     font-size: 1.1rem;
     border-radius: 10px;
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.05);;
     width: 100%;
 }
 
@@ -326,7 +342,7 @@
 }
 
 .new-button {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.05);
     border: none;
     padding: .25rem .75rem;
     border-radius: 10px;
@@ -334,6 +350,10 @@
     justify-content: center;
     align-items: center;
     font-size: 1.1rem;
+}
+
+.new-button:hover {
+    cursor: pointer;
 }
 
 .new-heading-div {
