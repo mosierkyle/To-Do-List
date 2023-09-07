@@ -26,12 +26,3 @@ generateToDoList(lists.lists[0].toDos);
 
 loadingLists()
 loadingProjects(projects)
-
-function isDateToday(dateToCheck) {
-    const today = new Date();
-    const isSameDate =
-        dateToCheck.getDate() === today.getDate() &&
-        dateToCheck.getMonth() === today.getMonth() &&
-        dateToCheck.getFullYear() === today.getFullYear();
-    return isSameDate
-  }

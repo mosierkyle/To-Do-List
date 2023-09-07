@@ -37,8 +37,6 @@ export const getLists = (dueDate, hasProject, project) => {
     let newMonth = parseInt(getDateMonth(dueDate)) - 1
     let newYear = parseInt(getDateYear(dueDate));
     newDate.setFullYear(newYear, newMonth, newDay)
-    console.log(isDateInThisWeek(newDate));
-    console.log(newDate);
     if(hasProject === true) {
         belongsTo.push(project)
     }
