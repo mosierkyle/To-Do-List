@@ -30,7 +30,8 @@
     padding: 1rem;
     background-color: rgb(206,255,158);
     color: black;
-    max-height: 90vh;
+    max-height: fit-content;
+    overflow: scroll;
 }
 
 #lists {
@@ -43,7 +44,7 @@
 #projects {
     display: grid;
     grid-template-rows: 1fr 7fr;
-    grid-row-gap: 10px;
+    grid-row-gap: 15px;
 }
 
 .list {

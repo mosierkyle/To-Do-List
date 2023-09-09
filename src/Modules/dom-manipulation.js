@@ -1,7 +1,8 @@
-import { sortList } from "./getLists";
+import { getLists, sortList } from "./getLists";
 import { projects, lists } from "./miscObjs";
 import { toDoItem } from "./create-ToDo-item";
 import { toDoList } from "./create-ToDo-list";
+import { getProjects, storeProject } from "./storage";
 
 let currentList;
 
@@ -131,6 +132,9 @@ export const loadingLists = ()=> {
 }
 
 export const loadingProjects = (projects) => {
+    if(projects.projectList.length == 0){
+        getProjects()
+    }
     const projectList = document.querySelector('#project-list')
     while(projectList.firstChild) {
         projectList.removeChild(projectList.firstChild);
@@ -353,14 +357,13 @@ const createNewProject = () => {
     projectName.setAttribute('type', 'text');
     projectName.setAttribute('class', 'project-input');
     projectList.appendChild(projectName)
-
     projectName.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
             if((projectName.value == '')){
                 return
             }
             const newProject = new toDoList(projectName.value);
-            console.log(newProject);
+            storeProject(projectName.value)
             projects.addItem(newProject);
             loadingProjects(projects)
         }
