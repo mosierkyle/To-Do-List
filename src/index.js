@@ -6,6 +6,7 @@ import { generateToDoList, loadingLists, loadingProjects, newToDoItem,  } from "
 import { sortList } from "./Modules/getLists";
 import { storeProject, getProjects, getItems } from "./Modules/storage";
 
+// localStorage.removeItem('do homework')
 // localStorage.clear()
 createMainLists()
 

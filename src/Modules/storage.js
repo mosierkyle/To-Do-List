@@ -10,7 +10,6 @@ export const storeProject = (name) => {
         let oldValue = localStorage.projectList;
         localStorage.projectList = `${oldValue},${name}`;
     }
-    console.log(localStorage.projectList);
 }
 
 export const getProjects = () => {
@@ -27,8 +26,7 @@ export const getProjects = () => {
 }
 
 export const storeItem = (title, date, priorityNum, project, hasProject) => {
-    localStorage[`${title}`] = `${title},${date},${priorityNum},${project},${hasProject}`
-    console.log(localStorage[`${title}`]);
+    localStorage[`${title}`] = `${title},${date},${priorityNum},${project.getName()},${hasProject}`
 }
 
 export const getItems = () => {
@@ -37,10 +35,18 @@ export const getItems = () => {
         let toDoName = local[i][0]
         if(toDoName !== 'projectList'){
             let toDoInfo = local[i][1].split(',')
-            const loadedToDo = new toDoItem(toDoInfo[0],toDoInfo[1],toDoInfo[2],toDoInfo[3],toDoInfo[4]);
-            console.log(toDoInfo[1]);
+            const loadedToDo = new toDoItem(toDoInfo[0].trim(),toDoInfo[1],toDoInfo[2],retrieveProject(toDoInfo[3]),toDoInfo[4]);
             loadedToDo.addTo()
             updateCurrentpage()
         }
+    }
+}
+
+const retrieveProject = (projName) => {
+    for(let i = 0; i < projects.projectList.length; i++){
+        console.log(`${projects.projectList[i].name}--${projName}`);
+        if(projects.projectList[i].name == projName){
+            return projects.projectList[i];
+        } 
     }
 }

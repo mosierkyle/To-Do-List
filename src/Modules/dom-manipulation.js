@@ -303,7 +303,6 @@ const editToDoDate = (div, dueDate, obj) => {
                 editToDoDate(div, newDate, obj)
             })
             updateCurrentpage()
-            
         }
     })
 }
@@ -321,7 +320,7 @@ const newItem = (title,date,priority,project = 'none', hasProject = false)=> {
     for(let i = 0; i < projects.projectList.length; i++){
         if(projects.projectList[i].name == yep){
             realProject = projects.projectList[i];
-            realHasProject = true;
+            realHasProject = 'true';
         };
     }
     if(priority == 'High') {
@@ -332,7 +331,6 @@ const newItem = (title,date,priority,project = 'none', hasProject = false)=> {
         priorityNum = 1;
     }
     const toDoNew = new toDoItem(title,date,priorityNum,realProject,realHasProject)
-    console.log(toDoNew);
     storeItem(title,date,priorityNum,realProject,realHasProject)
     toDoNew.addTo()
     updateCurrentpage()
