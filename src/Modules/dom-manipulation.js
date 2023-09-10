@@ -2,7 +2,7 @@ import { getLists, sortList } from "./getLists";
 import { projects, lists } from "./miscObjs";
 import { toDoItem } from "./create-ToDo-item";
 import { toDoList } from "./create-ToDo-list";
-import { getProjects, storeProject } from "./storage";
+import { getProjects, storeItem, storeProject } from "./storage";
 
 let currentList;
 
@@ -308,7 +308,7 @@ const editToDoDate = (div, dueDate, obj) => {
     })
 }
 
-const updateCurrentpage = (list = currentList) => {
+export const updateCurrentpage = (list = currentList) => {
     sortList(list)
     generateToDoList(list)
 }
@@ -332,6 +332,8 @@ const newItem = (title,date,priority,project = 'none', hasProject = false)=> {
         priorityNum = 1;
     }
     const toDoNew = new toDoItem(title,date,priorityNum,realProject,realHasProject)
+    console.log(toDoNew);
+    storeItem(title,date,priorityNum,realProject,realHasProject)
     toDoNew.addTo()
     updateCurrentpage()
 }

@@ -1,11 +1,11 @@
 import { projects, lists} from "./miscObjs";
 
-const getDateDay = (date) => parseInt(date.charAt(date.length-1))
+const getDateDay = (date) => Number(`${date.charAt(date.length-2)}${date.charAt(date.length-1)}`)
 
-const getDateMonth = (date) => parseInt(`${date.charAt(5)}` + `${date.charAt(6)}`)
+const getDateMonth = (date) => Number(`${date.charAt(5)}${date.charAt(6)}`)
 
 
-const getDateYear = (date) => parseInt(`${date.charAt(0)}` + `${date.charAt(1)}` + `${date.charAt(2)}` + `${date.charAt(3)}`)
+const getDateYear = (date) => Number(`${date.charAt(0)}` + `${date.charAt(1)}` + `${date.charAt(2)}` + `${date.charAt(3)}`)
 
 function isDateInThisWeek(date) {
     const todayObj = new Date();
@@ -33,9 +33,9 @@ export const getLists = (dueDate, hasProject, project) => {
     const belongsTo = []
     belongsTo.push(lists.lists[0]);
     let newDate = new Date();
-    let newDay = parseInt(getDateDay(dueDate))
-    let newMonth = parseInt(getDateMonth(dueDate)) - 1
-    let newYear = parseInt(getDateYear(dueDate));
+    let newDay = Number(getDateDay(dueDate))
+    let newMonth = Number(getDateMonth(dueDate)) - 1
+    let newYear = Number(getDateYear(dueDate));
     newDate.setFullYear(newYear, newMonth, newDay)
     if(hasProject === true) {
         belongsTo.push(project)
