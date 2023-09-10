@@ -3,7 +3,6 @@ import { toDoList } from "./create-ToDo-list";
 export const projects = (() => {
     const projectList = [];
 
-
     const addItem = (item) => {
         projectList.push(item)
     }

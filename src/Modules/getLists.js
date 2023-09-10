@@ -4,7 +4,6 @@ const getDateDay = (date) => Number(`${date.charAt(date.length-2)}${date.charAt(
 
 const getDateMonth = (date) => Number(`${date.charAt(5)}${date.charAt(6)}`)
 
-
 const getDateYear = (date) => Number(`${date.charAt(0)}` + `${date.charAt(1)}` + `${date.charAt(2)}` + `${date.charAt(3)}`)
 
 function isDateInThisWeek(date) {
@@ -20,7 +19,7 @@ function isDateInThisWeek(date) {
     return date >= firstDayOfWeek && date <= lastDayOfWeek;
   }
 
-  function isDateToday(dateToCheck) {
+  const isDateToday = (dateToCheck) => {
     const today = new Date();
     const isSameDate =
         dateToCheck.getDate() === today.getDate() &&

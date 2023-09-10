@@ -1,4 +1,4 @@
-import { getLists, sortList } from "./getLists";
+import { sortList } from "./getLists";
 import { projects, lists } from "./miscObjs";
 import { toDoItem } from "./create-ToDo-item";
 import { toDoList } from "./create-ToDo-list";
