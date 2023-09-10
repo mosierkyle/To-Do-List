@@ -34,6 +34,6 @@ generateToDoList(lists.lists[0].toDos);
 
 loadingLists()
 loadingProjects(projects)
-console.log(localStorage);
+getItems()
 
-getItems();
+console.log(localStorage);

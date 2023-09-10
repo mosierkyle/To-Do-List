@@ -2,7 +2,7 @@ import { getLists, sortList } from "./getLists";
 import { projects, lists } from "./miscObjs";
 import { toDoItem } from "./create-ToDo-item";
 import { toDoList } from "./create-ToDo-list";
-import { getProjects, storeItem, storeProject } from "./storage";
+import { getProjects, storeItem, storeProject, removeStore } from "./storage";
 
 let currentList;
 
@@ -83,6 +83,7 @@ export const generateToDoItem = (obj) => {
 
     toDoDelete.addEventListener('click', ()=> {
         deleteToDoItem(id, obj)
+        removeStore(obj.getName())
     })
 
     toDoTitle.addEventListener('click',()=> {

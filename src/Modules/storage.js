@@ -44,9 +44,12 @@ export const getItems = () => {
 
 const retrieveProject = (projName) => {
     for(let i = 0; i < projects.projectList.length; i++){
-        console.log(`${projects.projectList[i].name}--${projName}`);
         if(projects.projectList[i].name == projName){
             return projects.projectList[i];
         } 
     }
+}
+
+export const removeStore = (key) => {
+    localStorage.removeItem(key);
 }
