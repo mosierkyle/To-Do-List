@@ -26,7 +26,11 @@ export const getProjects = () => {
 }
 
 export const storeItem = (title, date, priorityNum, project, hasProject) => {
-    localStorage[`${title}`] = `${title},${date},${priorityNum},${project.getName()},${hasProject}`
+    if(hasProject == false){
+        localStorage[`${title}`] = `${title},${date},${priorityNum},${project},${hasProject}`
+    } else if(hasProject == 'true') {
+        localStorage[`${title}`] = `${title},${date},${priorityNum},${project.getName()},${hasProject}`
+    }
 }
 
 export const getItems = () => {
