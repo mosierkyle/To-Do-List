@@ -1,17 +1,17 @@
 {
   "name": "to-do-list",
   "version": "1.0.0",
+  "repository": {
+    "url": "git+https://github.com/mosierkyle/To-Do-List.git"
+  },
+  "scripts": {
+    "build": "webpack --mode=development",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
   "description": "a to do list web app that allows you to track your responsibilities with ease",
   "main": "index.js",
   "private": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mosierkyle/To-Do-List.git"
-  },
   "author": "Kyle Mosier",
   "license": "ISC",
   "bugs": {
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/mosierkyle/To-Do-List#readme",
   "devDependencies": {
     "css-loader": "^6.8.1",
+    "gh-pages": "^6.0.0",
     "style-loader": "^3.3.3",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
